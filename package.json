@@ -1,0 +1,8 @@
+{
+  "name": "braingames",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:VladFiliucov/frontend-project-lvl1.git",
+  "author": "Vlad Filiucov <filiucov@mail.ru>",
+  "license": "MIT"
+}
