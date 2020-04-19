@@ -1,0 +1,15 @@
+extends:
+  - airbnb-base
+
+plugins:
+  - import
+
+env:
+  node: true
+
+rules:
+  no-console: 0
+
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
