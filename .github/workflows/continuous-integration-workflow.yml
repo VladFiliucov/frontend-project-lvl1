@@ -1,11 +1,26 @@
-name: Build
-on: [push]
+name: Lint
+
+on: push
 
 jobs:
-  deploy:
-    name: Deploy package
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
+
     steps:
-    - name: Lint package
-      run: |
-        make lint
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Run linters
+        uses: samuelmeuli/lint-action@v1
+        with:
+          # Enable linters
+          eslint: true
