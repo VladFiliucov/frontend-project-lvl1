@@ -1,0 +1,11 @@
+name: Build
+on: [push]
+
+jobs:
+  deploy:
+    name: Deploy package
+    runs-on: ubuntu-latest
+    steps:
+    - name: Lint package
+      run: |
+        make lint
