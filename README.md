@@ -3,4 +3,4 @@
 
 Example useage:
 
-[![asciicast](https://asciinema.org/a/9EDe2qclerVNEtOzC5ecIguqq.png)](https://asciinema.org/a/9EDe2qclerVNEtOzC5ecIguqq)
+[![asciicast](https://asciinema.org/a/9EDe2qclerVNEtOzC5ecIguqq.svg)](https://asciinema.org/a/9EDe2qclerVNEtOzC5ecIguqq)
