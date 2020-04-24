@@ -4,16 +4,18 @@ console.log('Welcome to the Brain Games!');
 
 export const promptAndPrintPlayersName = () => {
   const playerName = readlineSync.question('May I have your name? - ');
+
   console.log(`Hello, ${playerName}!`);
 
   return playerName;
 };
 
-const generateRandomNumber = (max) => Math.floor(Math.random() * Math.floor(max));
-const logCorrectAnswerOnMistake = (correctAnswer) => console.log(`is wrong answer ;(. Correct answer was "${correctAnswer}".`);
-const logTryAgainMessage = (playerName) => console.log(`Let's try again, ${playerName}!`);
+const generateRandomNumber = max => Math.floor(Math.random() * Math.floor(max));
+const logCorrectAnswerOnMistake = correctAnswer =>
+  console.log(`is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+const logTryAgainMessage = playerName => console.log(`Let's try again, ${playerName}!`);
 
-const askBrainEvenQuestions = (playerName) => {
+const askBrainEvenQuestions = playerName => {
   let numberOfCorrectAnswersGiven = 0;
   let commitedMistake = false;
 
@@ -34,7 +36,6 @@ const askBrainEvenQuestions = (playerName) => {
     logTryAgainMessage(playerName);
     commitedMistake = true;
   };
-
 
   while (!commitedMistake && numberOfCorrectAnswersGiven < 3) {
     console.log('Answer "yes" if the number is even, otherwise answer "no".');
