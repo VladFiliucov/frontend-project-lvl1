@@ -7,6 +7,8 @@ import {
   logCorrectAnswerMessage,
   greetPlayer,
   logQuestion,
+  logMessage,
+  logVictoryMessage,
 } from '../messageHelpers.js';
 import generateRandomNumber from '../utils/index.js';
 
@@ -45,11 +47,11 @@ const playBrainCalc = playersName => {
   };
 
   while (!commitedMistake && numberOfCorrectAnswersGiven < 3) {
-    console.log('What is the result of the expression?');
+    logMessage('What is the result of the expression?');
     playRound();
   }
 
-  if (!commitedMistake) console.log(`Congratulations, ${playersName}!`);
+  if (!commitedMistake) logVictoryMessage(playersName);
 };
 
 export default () => {
