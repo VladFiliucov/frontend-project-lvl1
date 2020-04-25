@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { promptAndPrintPlayersName } from '../src/index.js';
+import playBrainGames from '../src/games/brain-games.js';
 
-promptAndPrintPlayersName();
+playBrainGames();
