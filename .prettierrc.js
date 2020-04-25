@@ -5,4 +5,5 @@ module.exports = {
   singleQuote: true,
   endOfLine: 'lf',
   useTabs: false,
+  trailingComma: 'all',
 }
