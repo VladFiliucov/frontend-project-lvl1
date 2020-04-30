@@ -8,3 +8,5 @@
 [ - Brain calc](/docs/brain-calc.md)
 
 [ - Brain gcd](/docs/brain-gcd.md)
+
+[ - Brain progression](/docs/brain-progression.md)
