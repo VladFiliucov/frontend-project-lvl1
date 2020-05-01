@@ -1,6 +1,6 @@
 # Brain GCD
 
-description here
+Greatest common divisor brain game. Player has to answer with greatest common divisor for two randomly generated numbers.
 
 ## Happy path:
 

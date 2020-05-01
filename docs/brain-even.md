@@ -1,6 +1,6 @@
 __Brain even:__
 
-description here
+Brain game testing players ability to identify if number can be divided by 2 without remainder.
 
 Happy path:
 

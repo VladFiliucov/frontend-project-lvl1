@@ -1,6 +1,6 @@
 # Brain Progression
 
-description here
+Brain game where player has to guess missing number in a sequence.
 
 ## Happy path:
 
