@@ -12,7 +12,7 @@ import {
 } from '../messageHelpers.js';
 import generateRandomNumber from '../utils/index.js';
 
- const ATTEMPTS_TO_WIN = 3;
+const ATTEMPTS_TO_WIN = 3;
 
 const playBrainGcd = playersName => {
   let numberOfCorrectAnswersGiven = 0;
