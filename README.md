@@ -10,3 +10,5 @@
 [ - Brain gcd](/docs/brain-gcd.md)
 
 [ - Brain progression](/docs/brain-progression.md)
+
+[ - Brain prime](/docs/brain-prime.md)
