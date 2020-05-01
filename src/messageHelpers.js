@@ -16,6 +16,6 @@ export const logVictoryMessage = playersName => console.log(`Congratulations, ${
 export const logQuestion = text => console.log(`Question: ${text}`);
 export const logMessage = text => console.log(text);
 export const logCorrectAnswerMessage = () => console.log('Correct!');
-export const logCorrectAnswerOnMistake = correctAnswer =>
-  console.log(`is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+export const logCorrectAnswerOnMistake = (correctAnswer, playersAnswer) =>
+  console.log(`${playersAnswer} is wrong answer ;(. Correct answer was "${correctAnswer}".`);
 export const logTryAgainMessage = playerName => console.log(`Let's try again, ${playerName}!`);

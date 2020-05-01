@@ -39,7 +39,7 @@ const playBrainPrime = playersName => {
       return;
     }
 
-    logCorrectAnswerOnMistake(correctAnswer);
+    logCorrectAnswerOnMistake(correctAnswer, playersAnswer);
     logTryAgainMessage(playersName);
     commitedMistake = true;
   };
