@@ -61,10 +61,11 @@ const playBrainProgression = playersName => {
 
     const generatedSequence = generateSequence(10);
     const correctAnswer = generatedSequence[hiddenNumberIndex - 1];
+    const hiddenNumberLastInSqequence = hiddenNumberIndex - 1 === generatedSequence.length;
     const questionSequence = [
       ...generatedSequence.slice(0, hiddenNumberIndex - 1),
       '..',
-      ...generatedSequence.slice(hiddenNumberIndex),
+      ...(!hiddenNumberLastInSqequence && generatedSequence.slice(hiddenNumberIndex)),
     ];
     const question = questionSequence.join(' ');
 
