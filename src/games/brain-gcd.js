@@ -12,6 +12,8 @@ import {
 } from '../messageHelpers.js';
 import generateRandomNumber from '../utils/index.js';
 
+ const ATTEMPTS_TO_WIN = 3;
+
 const playBrainGcd = playersName => {
   let numberOfCorrectAnswersGiven = 0;
   let commitedMistake = false;
@@ -51,7 +53,7 @@ const playBrainGcd = playersName => {
     commitedMistake = true;
   };
 
-  while (!commitedMistake && numberOfCorrectAnswersGiven < 3) {
+  while (!commitedMistake && numberOfCorrectAnswersGiven < ATTEMPTS_TO_WIN) {
     logMessage('Find the greatest common divisor of given numbers.');
     playRound();
   }

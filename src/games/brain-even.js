@@ -12,6 +12,8 @@ import {
 } from '../messageHelpers.js';
 import generateRandomNumber from '../utils/index.js';
 
+const ATTEMPTS_TO_WIN = 3;
+
 const playBrainEven = playersName => {
   let numberOfCorrectAnswersGiven = 0;
   let commitedMistake = false;
@@ -34,7 +36,7 @@ const playBrainEven = playersName => {
     commitedMistake = true;
   };
 
-  while (!commitedMistake && numberOfCorrectAnswersGiven < 3) {
+  while (!commitedMistake && numberOfCorrectAnswersGiven < ATTEMPTS_TO_WIN) {
     logMessage('Answer "yes" if the number is even, otherwise answer "no".');
     playRound();
   }

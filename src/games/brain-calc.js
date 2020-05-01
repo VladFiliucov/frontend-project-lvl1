@@ -21,6 +21,8 @@ const supportedOperations = [
   ['*', mult],
 ];
 
+const ATTEMPTS_TO_WIN = 3;
+
 const playBrainCalc = playersName => {
   let numberOfCorrectAnswersGiven = 0;
   let commitedMistake = false;
@@ -46,7 +48,7 @@ const playBrainCalc = playersName => {
     commitedMistake = true;
   };
 
-  while (!commitedMistake && numberOfCorrectAnswersGiven < 3) {
+  while (!commitedMistake && numberOfCorrectAnswersGiven < ATTEMPTS_TO_WIN) {
     logMessage('What is the result of the expression?');
     playRound();
   }

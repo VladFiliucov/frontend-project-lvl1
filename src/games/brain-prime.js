@@ -12,6 +12,8 @@ import {
 } from '../messageHelpers.js';
 import generateRandomNumber from '../utils/index.js';
 
+const ATTEMPTS_TO_WIN = 3;
+
 const playBrainPrime = playersName => {
   let numberOfCorrectAnswersGiven = 0;
   let commitedMistake = false;
@@ -44,7 +46,7 @@ const playBrainPrime = playersName => {
     commitedMistake = true;
   };
 
-  while (!commitedMistake && numberOfCorrectAnswersGiven < 3) {
+  while (!commitedMistake && numberOfCorrectAnswersGiven < ATTEMPTS_TO_WIN) {
     logMessage(`Answer "yes" if given number is prime. Otherwise answer "no".`);
     playRound();
   }

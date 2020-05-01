@@ -13,6 +13,7 @@ import {
 import generateRandomNumber from '../utils/index.js';
 
 const MAX_PROGRESSION_LENGTH = 10;
+const ATTEMPTS_TO_WIN = 3;
 
 const playBrainProgression = playersName => {
   let numberOfCorrectAnswersGiven = 0;
@@ -85,7 +86,7 @@ const playBrainProgression = playersName => {
     commitedMistake = true;
   };
 
-  while (!commitedMistake && numberOfCorrectAnswersGiven < 3) {
+  while (!commitedMistake && numberOfCorrectAnswersGiven < ATTEMPTS_TO_WIN) {
     logMessage('What number is missing in the progression?');
     playRound();
   }
