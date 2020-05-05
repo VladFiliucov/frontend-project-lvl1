@@ -1,103 +1,66 @@
-import {
-  printWelcomeMessage,
-  getNameFromPlayer,
-  getPlayersAnswer,
-  logCorrectAnswerOnMistake,
-  logTryAgainMessage,
-  logCorrectAnswerMessage,
-  greetPlayer,
-  logQuestion,
-  logMessage,
-  logVictoryMessage,
-} from '../messageHelpers.js';
+import gameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
 const MAX_PROGRESSION_LENGTH = 10;
-const ATTEMPTS_TO_WIN = 3;
 
-const playBrainProgression = playersName => {
-  let numberOfCorrectAnswersGiven = 0;
-  let commitedMistake = false;
+const evenPredicate = num => num % 2 === 0;
+const evenModifier = num => num + 1;
 
-  const playRound = () => {
-    const hiddenNumberIndex = generateRandomNumber(0, MAX_PROGRESSION_LENGTH);
+const oddPredicate = num => num % 2 !== 0;
+const oddModifier = num => num + 1;
 
-    const generateSequence = seqLength => {
-      const generate = (predicate, modifier) => {
-        const result = [];
+const squarePredicate = () => true;
+const squareModifier = num => num * num;
 
-        let currentNumber = generateRandomNumber(0, 100);
+const supportedSequences = [
+  [evenPredicate, evenModifier],
+  [oddPredicate, oddModifier],
+  [squarePredicate, squareModifier],
+];
 
-        while (result.length < seqLength) {
-          if (predicate(currentNumber)) {
-            result.push(currentNumber);
-          }
+const generateSequence = (seqLength, availableSequences) => {
+  const generate = (predicate, modifier) => {
+    const result = [];
 
-          currentNumber = modifier(currentNumber);
-        }
+    let currentNumber = generateRandomNumber(0, 100);
 
-        return result;
-      };
+    while (result.length < seqLength) {
+      if (predicate(currentNumber)) {
+        result.push(currentNumber);
+      }
 
-      const evenPredicate = num => num % 2 === 0;
-      const evenModifier = num => num + 1;
-
-      const oddPredicate = num => num % 2 !== 0;
-      const oddModifier = num => num + 1;
-
-      const squarePredicate = () => true;
-      const squareModifier = num => num * num;
-
-      const availableSequences = [
-        [evenPredicate, evenModifier],
-        [oddPredicate, oddModifier],
-        [squarePredicate, squareModifier],
-      ];
-      const randomSequance =
-        availableSequences[generateRandomNumber(0, availableSequences.length - 1)];
-      const [selectedPredicate, selectedModifier] = randomSequance;
-
-      return generate(selectedPredicate, selectedModifier);
-    };
-
-    const generatedSequence = generateSequence(10);
-    const correctAnswer = generatedSequence[hiddenNumberIndex - 1];
-    const hiddenNumberLastInSqequence = hiddenNumberIndex - 1 === generatedSequence.length;
-    const questionSequence = [
-      ...generatedSequence.slice(0, hiddenNumberIndex - 1),
-      '..',
-      ...(!hiddenNumberLastInSqequence && generatedSequence.slice(hiddenNumberIndex)),
-    ];
-    const question = questionSequence.join(' ');
-
-    logQuestion(question);
-
-    const playersAnswer = getPlayersAnswer();
-    const parsedPlayersAnswer = Number(playersAnswer);
-
-    if (!Number.isNaN(parsedPlayersAnswer) && parsedPlayersAnswer === correctAnswer) {
-      logCorrectAnswerMessage();
-      numberOfCorrectAnswersGiven += 1;
-      return;
+      currentNumber = modifier(currentNumber);
     }
 
-    logCorrectAnswerOnMistake(correctAnswer, playersAnswer);
-    logTryAgainMessage(playersName);
-    commitedMistake = true;
+    return result;
   };
 
-  while (!commitedMistake && numberOfCorrectAnswersGiven < ATTEMPTS_TO_WIN) {
-    logMessage('What number is missing in the progression?');
-    playRound();
-  }
+  const randomSequance = availableSequences[generateRandomNumber(0, availableSequences.length - 1)];
+  const [selectedPredicate, selectedModifier] = randomSequance;
 
-  if (!commitedMistake) logVictoryMessage(playersName);
+  return generate(selectedPredicate, selectedModifier);
 };
 
-export default () => {
-  printWelcomeMessage();
-  const playersName = getNameFromPlayer();
-  greetPlayer(playersName);
+const brainProgressionRound = () => {
+  const hiddenNumberIndex = generateRandomNumber(0, MAX_PROGRESSION_LENGTH);
 
-  playBrainProgression(playersName);
+  const generatedSequence = generateSequence(10, supportedSequences);
+  const correctAnswer = generatedSequence[hiddenNumberIndex - 1];
+  const hiddenNumberLastInSqequence = hiddenNumberIndex - 1 === generatedSequence.length;
+  const questionSequence = [
+    ...generatedSequence.slice(0, hiddenNumberIndex - 1),
+    '..',
+    ...(!hiddenNumberLastInSqequence && generatedSequence.slice(hiddenNumberIndex)),
+  ];
+  const question = questionSequence.join(' ');
+
+  return [question, correctAnswer];
+};
+
+const gameIntroMessage = 'What number is missing in the progression?';
+const validateAnswer = answer => !Number.isNaN(Number(answer));
+const normalizeAnswer = answer => Number(answer);
+
+export default () => {
+  gameCore(gameIntroMessage, brainProgressionRound, validateAnswer, normalizeAnswer);
 };
