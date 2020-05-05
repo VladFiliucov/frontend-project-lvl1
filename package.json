@@ -6,6 +6,7 @@
   "repository": "git@github.com:VladFiliucov/frontend-project-lvl1.git",
   "author": "Vlad Filiucov <filiucov@mail.ru>",
   "license": "MIT",
+  "keywords": ["braingames", "cli-game", "javascript", "gambling"],
   "bin": {
     "brain-games": "bin/brain-games.js",
     "brain-even": "bin/brain-even.js",
