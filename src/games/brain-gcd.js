@@ -19,8 +19,8 @@ const playBrainGcd = playersName => {
   let commitedMistake = false;
 
   const playRound = () => {
-    const firstNumber = generateRandomNumber(30);
-    const secondNumber = generateRandomNumber(30);
+    const firstNumber = generateRandomNumber(0, 30);
+    const secondNumber = generateRandomNumber(0, 30);
 
     const findGreatestDivisor = (a, b) => {
       if (a === b) return a;

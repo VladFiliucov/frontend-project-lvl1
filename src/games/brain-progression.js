@@ -20,13 +20,13 @@ const playBrainProgression = playersName => {
   let commitedMistake = false;
 
   const playRound = () => {
-    const hiddenNumberIndex = generateRandomNumber(MAX_PROGRESSION_LENGTH);
+    const hiddenNumberIndex = generateRandomNumber(0, MAX_PROGRESSION_LENGTH);
 
     const generateSequence = seqLength => {
       const generate = (predicate, modifier) => {
         const result = [];
 
-        let currentNumber = generateRandomNumber();
+        let currentNumber = generateRandomNumber(0, 100);
 
         while (result.length < seqLength) {
           if (predicate(currentNumber)) {
@@ -54,7 +54,7 @@ const playBrainProgression = playersName => {
         [squarePredicate, squareModifier],
       ];
       const randomSequance =
-        availableSequences[generateRandomNumber(availableSequences.length - 1)];
+        availableSequences[generateRandomNumber(0, availableSequences.length - 1)];
       const [selectedPredicate, selectedModifier] = randomSequance;
 
       return generate(selectedPredicate, selectedModifier);

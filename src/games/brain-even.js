@@ -19,7 +19,7 @@ const playBrainEven = playersName => {
   let commitedMistake = false;
 
   const playRound = () => {
-    const currentNumber = generateRandomNumber(100);
+    const currentNumber = generateRandomNumber(0, 100);
     const correctAnswerIsEven = currentNumber % 2 === 0;
     const correctAnswer = correctAnswerIsEven ? 'yes' : 'no';
     logQuestion(currentNumber);

@@ -28,9 +28,9 @@ const playBrainCalc = playersName => {
   let commitedMistake = false;
 
   const playRound = () => {
-    const firstNumber = generateRandomNumber(10);
-    const secondNumber = generateRandomNumber(10);
-    const currentOperation = supportedOperations[generateRandomNumber(supportedOperations.length)];
+    const firstNumber = generateRandomNumber(0, 10);
+    const secondNumber = generateRandomNumber(0, 10);
+    const currentOperation = supportedOperations[generateRandomNumber(0, supportedOperations.length)];
     const [operator, cb] = currentOperation;
     logQuestion(`${firstNumber} ${operator} ${secondNumber}`);
     const playersAnswer = getPlayersAnswer();

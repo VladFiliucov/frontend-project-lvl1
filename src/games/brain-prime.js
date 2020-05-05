@@ -29,7 +29,7 @@ const playBrainPrime = playersName => {
       }
       return true;
     };
-    const currentNumber = generateRandomNumber(100);
+    const currentNumber = generateRandomNumber(0, 100);
     const correctAnswer = isPrime(currentNumber) ? 'yes' : 'no';
     logQuestion(currentNumber);
     const playersAnswer = getPlayersAnswer();
