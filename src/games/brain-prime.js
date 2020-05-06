@@ -1,63 +1,29 @@
-import {
-  printWelcomeMessage,
-  getNameFromPlayer,
-  getPlayersAnswer,
-  logCorrectAnswerOnMistake,
-  logTryAgainMessage,
-  logCorrectAnswerMessage,
-  greetPlayer,
-  logQuestion,
-  logMessage,
-  logVictoryMessage,
-} from '../messageHelpers.js';
+import gameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
-const ATTEMPTS_TO_WIN = 3;
+const brainPrimeRound = () => {
+  const isPrime = num => {
+    if (num < 2) return false;
+    if (num === 2) return true;
+    if (num % 2 === 0) return false;
 
-const playBrainPrime = playersName => {
-  let numberOfCorrectAnswersGiven = 0;
-  let commitedMistake = false;
-
-  const playRound = () => {
-    const isPrime = num => {
-      if (num < 2) return false;
-      if (num === 2) return true;
-      if (num % 2 === 0) return false;
-
-      for (let i = 2; i < num; i += 1) {
-        if (num % i === 0) return false;
-      }
-      return true;
-    };
-    const currentNumber = generateRandomNumber(0, 100);
-    const correctAnswer = isPrime(currentNumber) ? 'yes' : 'no';
-    logQuestion(currentNumber);
-    const playersAnswer = getPlayersAnswer();
-    const parsedPlayersAnswer = playersAnswer && playersAnswer.toLowerCase();
-
-    if (parsedPlayersAnswer === correctAnswer) {
-      logCorrectAnswerMessage();
-      numberOfCorrectAnswersGiven += 1;
-      return;
+    for (let i = 2; i < num; i += 1) {
+      if (num % i === 0) return false;
     }
-
-    logCorrectAnswerOnMistake(correctAnswer, playersAnswer);
-    logTryAgainMessage(playersName);
-    commitedMistake = true;
+    return true;
   };
 
-  while (!commitedMistake && numberOfCorrectAnswersGiven < ATTEMPTS_TO_WIN) {
-    logMessage(`Answer "yes" if given number is prime. Otherwise answer "no".`);
-    playRound();
-  }
+  const questionedNumber = generateRandomNumber(0, 100);
+  const correctAnswer = isPrime(questionedNumber) ? 'yes' : 'no';
 
-  if (!commitedMistake) logVictoryMessage(playersName);
+  return [questionedNumber, correctAnswer];
 };
 
-export default () => {
-  printWelcomeMessage();
-  const playersName = getNameFromPlayer();
-  greetPlayer(playersName);
+const gameIntroMessage = `Answer "yes" if given number is prime. Otherwise answer "no".`;
+const acceptableAnswers = ['yes', 'no'];
+const validateAnswer = answer => acceptableAnswers.includes(answer.toLowerCase());
+const normalizeAnswer = answer => answer.toLowerCase();
 
-  playBrainPrime(playersName);
+export default () => {
+  gameCore(gameIntroMessage, brainPrimeRound, validateAnswer, normalizeAnswer);
 };
