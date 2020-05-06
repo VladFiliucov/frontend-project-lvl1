@@ -1,15 +1,4 @@
-import {
-  printWelcomeMessage,
-  getNameFromPlayer,
-  getPlayersAnswer,
-  logCorrectAnswerOnMistake,
-  logTryAgainMessage,
-  logCorrectAnswerMessage,
-  greetPlayer,
-  logQuestion,
-  logMessage,
-  logVictoryMessage,
-} from '../messageHelpers.js';
+import gameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
 const sum = (a, b) => a + b;
@@ -21,45 +10,21 @@ const supportedOperations = [
   ['*', mult],
 ];
 
-const ATTEMPTS_TO_WIN = 3;
+const brainCalcRound = () => {
+  const firstNumber = generateRandomNumber(0, 10);
+  const secondNumber = generateRandomNumber(0, 10);
+  const currentOperation = supportedOperations[generateRandomNumber(0, supportedOperations.length)];
+  const [operator, cb] = currentOperation;
+  const questionedOperation = `${firstNumber} ${operator} ${secondNumber}`;
+  const correctAnswer = cb(firstNumber, secondNumber);
 
-const playBrainCalc = playersName => {
-  let numberOfCorrectAnswersGiven = 0;
-  let commitedMistake = false;
-
-  const playRound = () => {
-    const firstNumber = generateRandomNumber(0, 10);
-    const secondNumber = generateRandomNumber(0, 10);
-    const currentOperation = supportedOperations[generateRandomNumber(0, supportedOperations.length)];
-    const [operator, cb] = currentOperation;
-    logQuestion(`${firstNumber} ${operator} ${secondNumber}`);
-    const playersAnswer = getPlayersAnswer();
-    const parsedPlayersAnswer = Number(playersAnswer);
-    const correctAnswer = cb(firstNumber, secondNumber);
-
-    if (!Number.isNaN(parsedPlayersAnswer) && parsedPlayersAnswer === correctAnswer) {
-      logCorrectAnswerMessage();
-      numberOfCorrectAnswersGiven += 1;
-      return;
-    }
-
-    logCorrectAnswerOnMistake(correctAnswer, playersAnswer);
-    logTryAgainMessage(playersName);
-    commitedMistake = true;
-  };
-
-  while (!commitedMistake && numberOfCorrectAnswersGiven < ATTEMPTS_TO_WIN) {
-    logMessage('What is the result of the expression?');
-    playRound();
-  }
-
-  if (!commitedMistake) logVictoryMessage(playersName);
+  return [questionedOperation, correctAnswer];
 };
 
-export default () => {
-  printWelcomeMessage();
-  const playersName = getNameFromPlayer();
-  greetPlayer(playersName);
+const gameIntroMessage = 'What is the result of the expression?';
+const validateAnswer = answer => !Number.isNaN(Number(answer));
+const normalizeAnswer = answer => Number(answer);
 
-  playBrainCalc(playersName);
+export default () => {
+  gameCore(gameIntroMessage, brainCalcRound, validateAnswer, normalizeAnswer);
 };
