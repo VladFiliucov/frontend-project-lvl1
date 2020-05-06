@@ -3,56 +3,31 @@ import generateRandomNumber from '../utils/index.js';
 
 const MAX_PROGRESSION_LENGTH = 10;
 
-const evenPredicate = num => num % 2 === 0;
-const evenModifier = num => num + 1;
+const generateSequence = seqLength => {
+  const startingPoint = generateRandomNumber(0, 100);
+  const step = generateRandomNumber(0, 5);
 
-const oddPredicate = num => num % 2 !== 0;
-const oddModifier = num => num + 1;
+  const result = [startingPoint];
 
-const squarePredicate = () => true;
-const squareModifier = num => num * num;
+  for (let i = 0; i < seqLength - 1; i += 1) {
+    const lastElement = result[result.length - 1];
+    const nextElement = lastElement + step;
 
-const supportedSequences = [
-  [evenPredicate, evenModifier],
-  [oddPredicate, oddModifier],
-  [squarePredicate, squareModifier],
-];
+    result.push(nextElement);
+  }
 
-const generateSequence = (seqLength, availableSequences) => {
-  const generate = (predicate, modifier) => {
-    const result = [];
-
-    let currentNumber = generateRandomNumber(0, 100);
-
-    while (result.length < seqLength) {
-      if (predicate(currentNumber)) {
-        result.push(currentNumber);
-      }
-
-      currentNumber = modifier(currentNumber);
-    }
-
-    return result;
-  };
-
-  const randomSequance = availableSequences[generateRandomNumber(0, availableSequences.length - 1)];
-  const [selectedPredicate, selectedModifier] = randomSequance;
-
-  return generate(selectedPredicate, selectedModifier);
+  return result;
 };
 
 const brainProgressionRound = () => {
-  const hiddenNumberIndex = generateRandomNumber(0, MAX_PROGRESSION_LENGTH);
+  const hiddenNumberIndex = generateRandomNumber(0, MAX_PROGRESSION_LENGTH - 1);
+  const generatedSequence = generateSequence(MAX_PROGRESSION_LENGTH);
+  const correctAnswer = generatedSequence[hiddenNumberIndex];
 
-  const generatedSequence = generateSequence(10, supportedSequences);
-  const correctAnswer = generatedSequence[hiddenNumberIndex - 1];
-  const hiddenNumberLastInSqequence = hiddenNumberIndex - 1 === generatedSequence.length;
-  const questionSequence = [
-    ...generatedSequence.slice(0, hiddenNumberIndex - 1),
-    '..',
-    ...(!hiddenNumberLastInSqequence && generatedSequence.slice(hiddenNumberIndex)),
-  ];
-  const question = questionSequence.join(' ');
+  const copyOriginalSeq = generatedSequence.slice();
+  copyOriginalSeq[hiddenNumberIndex] = '..';
+
+  const question = copyOriginalSeq.join(' ');
 
   return [question, correctAnswer];
 };
