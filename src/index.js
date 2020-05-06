@@ -8,7 +8,7 @@ export default (gameIntroMessage, gameRoundCb, validateAnswer, normalizeAnswer) 
 
   console.log('Welcome to the Brain Games!');
 
-  const playersName = readlineSync.question('May I have your name? - ');
+  const playersName = readlineSync.question('May I have your name? - ') || 'Player1';
   console.log(`Hello, ${playersName}!`);
 
   const playRound = () => {
