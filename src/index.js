@@ -2,7 +2,7 @@ import readlineSync from 'readline-sync';
 
 const ATTEMPTS_TO_WIN = 3;
 
-export default (gameIntroMessage, gameRoundCb, validateAnswer, normalizeAnswer) => {
+export default (rules, genGameData) => {
   let numberOfCorrectAnswersGiven = 0;
   let commitedMistake = false;
 
@@ -12,14 +12,12 @@ export default (gameIntroMessage, gameRoundCb, validateAnswer, normalizeAnswer) 
   console.log(`Hello, ${playersName}!`);
 
   const playRound = () => {
-    const [question, correctAnswer] = gameRoundCb();
+    const [question, correctAnswer] = genGameData();
 
     console.log(`Question: ${question}`);
     const playersAnswer = readlineSync.question('Your answer: ');
-    const validAnswer = validateAnswer(playersAnswer);
-    const normalizedAnswer = normalizeAnswer(playersAnswer);
 
-    if (validAnswer && normalizedAnswer === correctAnswer) {
+    if (playersAnswer === correctAnswer) {
       console.log('Correct!');
       numberOfCorrectAnswersGiven += 1;
       return;
@@ -31,7 +29,7 @@ export default (gameIntroMessage, gameRoundCb, validateAnswer, normalizeAnswer) 
   };
 
   while (!commitedMistake && numberOfCorrectAnswersGiven < ATTEMPTS_TO_WIN) {
-    console.log(gameIntroMessage);
+    console.log(rules);
     playRound();
   }
 
