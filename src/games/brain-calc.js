@@ -10,21 +10,19 @@ const supportedOperations = [
   ['*', mult],
 ];
 
-const brainCalcRound = () => {
+const genGameData = () => {
   const firstNumber = generateRandomNumber(0, 10);
   const secondNumber = generateRandomNumber(0, 10);
   const currentOperation = supportedOperations[generateRandomNumber(0, supportedOperations.length)];
   const [operator, cb] = currentOperation;
-  const questionedOperation = `${firstNumber} ${operator} ${secondNumber}`;
-  const correctAnswer = cb(firstNumber, secondNumber);
+  const question = `${firstNumber} ${operator} ${secondNumber}`;
+  const correctAnswer = cb(firstNumber, secondNumber).toString();
 
-  return [questionedOperation, correctAnswer];
+  return [question, correctAnswer];
 };
 
-const gameIntroMessage = 'What is the result of the expression?';
-const validateAnswer = answer => !Number.isNaN(Number(answer));
-const normalizeAnswer = answer => Number(answer);
+const rules = 'What is the result of the expression?';
 
 export default () => {
-  gameCore(gameIntroMessage, brainCalcRound, validateAnswer, normalizeAnswer);
+  gameCore(rules, genGameData);
 };
