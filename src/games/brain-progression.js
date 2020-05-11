@@ -19,10 +19,10 @@ const generateSequence = seqLength => {
   return result;
 };
 
-const brainProgressionRound = () => {
+const genGameData = () => {
   const hiddenNumberIndex = generateRandomNumber(0, MAX_PROGRESSION_LENGTH - 1);
   const generatedSequence = generateSequence(MAX_PROGRESSION_LENGTH);
-  const correctAnswer = generatedSequence[hiddenNumberIndex];
+  const correctAnswer = generatedSequence[hiddenNumberIndex].toString();
 
   const copyOriginalSeq = generatedSequence.slice();
   copyOriginalSeq[hiddenNumberIndex] = '..';
@@ -32,10 +32,8 @@ const brainProgressionRound = () => {
   return [question, correctAnswer];
 };
 
-const gameIntroMessage = 'What number is missing in the progression?';
-const validateAnswer = answer => !Number.isNaN(Number(answer));
-const normalizeAnswer = answer => Number(answer);
+const rules = 'What number is missing in the progression?';
 
 export default () => {
-  gameCore(gameIntroMessage, brainProgressionRound, validateAnswer, normalizeAnswer);
+  gameCore(rules, genGameData);
 };
