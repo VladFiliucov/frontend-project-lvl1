@@ -1,29 +1,26 @@
 import gameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
-const brainPrimeRound = () => {
-  const isPrime = num => {
-    if (num < 2) return false;
-    if (num === 2) return true;
-    if (num % 2 === 0) return false;
+const isPrime = num => {
+  if (num < 2) return false;
+  if (num === 2) return true;
+  if (num % 2 === 0) return false;
 
-    for (let i = 2; i < num; i += 1) {
-      if (num % i === 0) return false;
-    }
-    return true;
-  };
-
-  const questionedNumber = generateRandomNumber(0, 100);
-  const correctAnswer = isPrime(questionedNumber) ? 'yes' : 'no';
-
-  return [questionedNumber, correctAnswer];
+  for (let i = 2; i < num; i += 1) {
+    if (num % i === 0) return false;
+  }
+  return true;
 };
 
-const gameIntroMessage = `Answer "yes" if given number is prime. Otherwise answer "no".`;
-const acceptableAnswers = ['yes', 'no'];
-const validateAnswer = answer => acceptableAnswers.includes(answer.toLowerCase());
-const normalizeAnswer = answer => answer.toLowerCase();
+const genGameData = () => {
+  const question = generateRandomNumber(0, 100);
+  const correctAnswer = isPrime(question) ? 'yes' : 'no';
+
+  return [question, correctAnswer];
+};
+
+const rules = `Answer "yes" if given number is prime. Otherwise answer "no".`;
 
 export default () => {
-  gameCore(gameIntroMessage, brainPrimeRound, validateAnswer, normalizeAnswer);
+  gameCore(rules, genGameData);
 };
