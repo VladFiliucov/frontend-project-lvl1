@@ -2,14 +2,10 @@ import gameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
 const isPrime = num => {
-  if (num < 2) return false;
-  if (num === 2) return true;
-  if (num % 2 === 0) return false;
-
-  for (let i = 2; i < num; i += 1) {
+  for (let i = 2, sr = Math.sqrt(num); i <= sr; i += 1) {
     if (num % i === 0) return false;
   }
-  return true;
+  return num > 1;
 };
 
 const genGameData = () => {
