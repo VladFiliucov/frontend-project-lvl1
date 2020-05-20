@@ -1,22 +1,20 @@
 import runGameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
-const sum = (a, b) => a + b;
-const neg = (a, b) => a - b;
-const mult = (a, b) => a * b;
-const supportedOperations = [
-  ['+', sum],
-  ['-', neg],
-  ['*', mult],
-];
+const supportedOperations = {
+  '+': (a, b) => a + b,
+  '-': (a, b) => a - b,
+  '*': (a, b) => a * b,
+};
 
 const genGameData = () => {
   const firstNumber = generateRandomNumber(0, 10);
   const secondNumber = generateRandomNumber(0, 10);
-  const currentOperation = supportedOperations[generateRandomNumber(0, supportedOperations.length)];
-  const [operator, cb] = currentOperation;
-  const question = `${firstNumber} ${operator} ${secondNumber}`;
-  const correctAnswer = cb(firstNumber, secondNumber).toString();
+  const availableOperations = Object.keys(supportedOperations);
+  const currentOperator =
+    availableOperations[generateRandomNumber(0, availableOperations.length - 1)];
+  const question = `${firstNumber} ${currentOperator} ${secondNumber}`;
+  const correctAnswer = supportedOperations[currentOperator](firstNumber, secondNumber).toString();
 
   return [question, correctAnswer];
 };
