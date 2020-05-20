@@ -5,7 +5,7 @@ const findGreatestDivisor = (a, b) => {
   if (a === 0) return b;
   if (b === 0) return a;
 
-  const lowerNumber = a < b ? a : b;
+  const lowerNumber = Math.min(a, b);
 
   for (let i = lowerNumber; i >= 1; i -= 1) {
     if (a % i === 0 && b % i === 0) {
