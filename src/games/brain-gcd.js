@@ -2,8 +2,8 @@ import runGameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
 const findGreatestDivisor = (a, b) => {
-  if (a === b) return a;
-  if (a === 0 || b === 0) return 0;
+  if (a === 0) return b;
+  if (b === 0) return a;
 
   const lowerNumber = a < b ? a : b;
 
