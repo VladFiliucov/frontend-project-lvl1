@@ -5,8 +5,7 @@ const isEven = num => num % 2 === 0;
 
 const genGameData = () => {
   const question = generateRandomNumber(0, 100);
-  const correctAnswerIsEven = isEven(question);
-  const correctAnswer = correctAnswerIsEven ? 'yes' : 'no';
+  const correctAnswer = isEven(question) ? 'yes' : 'no';
 
   return [question, correctAnswer];
 };
