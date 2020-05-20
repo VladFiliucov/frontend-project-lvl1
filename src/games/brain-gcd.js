@@ -7,9 +7,9 @@ const findGreatestDivisor = (a, b) => {
 
   const lowerNumber = Math.min(a, b);
 
-  for (let i = lowerNumber; i >= 1; i -= 1) {
-    if (a % i === 0 && b % i === 0) {
-      return i;
+  for (let divisor = lowerNumber; divisor >= 1; divisor -= 1) {
+    if (a % divisor === 0 && b % divisor === 0) {
+      return divisor;
     }
   }
   return 1;
