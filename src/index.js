@@ -2,13 +2,13 @@ import readlineSync from 'readline-sync';
 
 const ATTEMPTS_TO_WIN = 3;
 
-export default (rules, genGameData) => {
+export default (task, genGameData) => {
   console.log('Welcome to the Brain Games!');
 
   const playersName = readlineSync.question('May I have your name? - ') || 'Player1';
   console.log(`Hello, ${playersName}!`);
 
-  console.log(rules);
+  console.log(task);
   for (let i = 1; i <= ATTEMPTS_TO_WIN; i += 1) {
     const [question, correctAnswer] = genGameData();
 

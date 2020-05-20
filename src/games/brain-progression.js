@@ -32,8 +32,8 @@ const genGameData = () => {
   return [question, correctAnswer];
 };
 
-const rules = 'What number is missing in the progression?';
+const task = 'What number is missing in the progression?';
 
 export default () => {
-  gameCore(rules, genGameData);
+  gameCore(task, genGameData);
 };

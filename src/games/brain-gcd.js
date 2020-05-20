@@ -26,8 +26,8 @@ const genGameData = () => {
   return [question, correctAnswer];
 };
 
-const rules = 'Find the greatest common divisor of given numbers.';
+const task = 'Find the greatest common divisor of given numbers.';
 
 export default () => {
-  gameCore(rules, genGameData);
+  gameCore(task, genGameData);
 };

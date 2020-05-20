@@ -11,8 +11,8 @@ const genGameData = () => {
   return [question, correctAnswer];
 };
 
-const rules = 'Answer "yes" if the number is even, otherwise answer "no".';
+const task = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 export default () => {
-  gameCore(rules, genGameData);
+  gameCore(task, genGameData);
 };

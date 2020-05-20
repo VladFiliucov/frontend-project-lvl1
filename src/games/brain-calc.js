@@ -21,8 +21,8 @@ const genGameData = () => {
   return [question, correctAnswer];
 };
 
-const rules = 'What is the result of the expression?';
+const task = 'What is the result of the expression?';
 
 export default () => {
-  gameCore(rules, genGameData);
+  gameCore(task, genGameData);
 };
