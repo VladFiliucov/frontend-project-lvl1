@@ -3,7 +3,10 @@
   "type": "module",
   "version": "1.0.0",
   "main": "src/index.js",
-  "repository": "git@github.com:VladFiliucov/frontend-project-lvl1.git",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:VladFiliucov/frontend-project-lvl1.git"
+  },
   "author": "Vlad Filiucov <filiucov@mail.ru>",
   "license": "MIT",
   "keywords": ["braingames", "cli-game", "javascript", "gambling"],
