@@ -9,7 +9,7 @@ const isPrime = num => {
 };
 
 const genGameData = () => {
-  const question = generateRandomNumber(0, 100);
+  const question = generateRandomNumber(0, 100).toString();
   const correctAnswer = isPrime(question) ? 'yes' : 'no';
 
   return [question, correctAnswer];

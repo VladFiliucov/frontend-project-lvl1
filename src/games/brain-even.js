@@ -4,7 +4,7 @@ import generateRandomNumber from '../utils/index.js';
 const isEven = num => num % 2 === 0;
 
 const genGameData = () => {
-  const question = generateRandomNumber(0, 100);
+  const question = generateRandomNumber(0, 100).toString();
   const correctAnswer = isEven(question) ? 'yes' : 'no';
 
   return [question, correctAnswer];
