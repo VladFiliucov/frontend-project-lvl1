@@ -1,4 +1,4 @@
-import gameCore from '../index.js';
+import runGameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
 const MAX_PROGRESSION_LENGTH = 10;
@@ -35,5 +35,5 @@ const genGameData = () => {
 const task = 'What number is missing in the progression?';
 
 export default () => {
-  gameCore(task, genGameData);
+  runGameCore(task, genGameData);
 };

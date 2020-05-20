@@ -1,4 +1,4 @@
-import gameCore from '../index.js';
+import runGameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
 const isPrime = num => {
@@ -18,5 +18,5 @@ const genGameData = () => {
 const task = `Answer "yes" if given number is prime. Otherwise answer "no".`;
 
 export default () => {
-  gameCore(task, genGameData);
+  runGameCore(task, genGameData);
 };

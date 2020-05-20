@@ -1,4 +1,4 @@
-import gameCore from '../index.js';
+import runGameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
 const sum = (a, b) => a + b;
@@ -24,5 +24,5 @@ const genGameData = () => {
 const task = 'What is the result of the expression?';
 
 export default () => {
-  gameCore(task, genGameData);
+  runGameCore(task, genGameData);
 };

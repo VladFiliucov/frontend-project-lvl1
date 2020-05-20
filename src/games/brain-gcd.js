@@ -1,4 +1,4 @@
-import gameCore from '../index.js';
+import runGameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
 const findGreatestDivisor = (a, b) => {
@@ -29,5 +29,5 @@ const genGameData = () => {
 const task = 'Find the greatest common divisor of given numbers.';
 
 export default () => {
-  gameCore(task, genGameData);
+  runGameCore(task, genGameData);
 };
