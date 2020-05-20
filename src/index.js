@@ -15,15 +15,13 @@ export default (rules, genGameData) => {
     console.log(`Question: ${question}`);
     const playersAnswer = readlineSync.question('Your answer: ');
 
-    if (playersAnswer === correctAnswer) {
-      console.log('Correct!');
-      if (i === ATTEMPTS_TO_WIN) {
-        console.log(`Congratulations, ${playersName}!`);
-      }
-    } else {
+    if (playersAnswer !== correctAnswer) {
       console.log(`${playersAnswer} is wrong answer ;(. Correct answer was "${correctAnswer}".`);
       console.log(`Let's try again, ${playersName}!`);
-      break;
+      return;
     }
+    console.log('Correct!');
   }
+
+  console.log(`Congratulations, ${playersName}!`);
 };
