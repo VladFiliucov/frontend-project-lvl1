@@ -6,9 +6,8 @@ const MAX_PROGRESSION_LENGTH = 10;
 const generateSequence = (seqLength, startingPoint, step) => {
   const result = [startingPoint];
 
-  for (let i = 0; i < seqLength - 1; i += 1) {
-    const lastElement = result[result.length - 1];
-    const nextElement = lastElement + step;
+  for (let i = 1; i < seqLength; i += 1) {
+    const nextElement = startingPoint + i * step;
 
     result.push(nextElement);
   }
