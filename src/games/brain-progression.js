@@ -3,10 +3,7 @@ import generateRandomNumber from '../utils/index.js';
 
 const MAX_PROGRESSION_LENGTH = 10;
 
-const generateSequence = seqLength => {
-  const startingPoint = generateRandomNumber(0, 100);
-  const step = generateRandomNumber(0, 5);
-
+const generateSequence = (seqLength, startingPoint, step) => {
   const result = [startingPoint];
 
   for (let i = 0; i < seqLength - 1; i += 1) {
@@ -21,7 +18,9 @@ const generateSequence = seqLength => {
 
 const genGameData = () => {
   const hiddenNumberIndex = generateRandomNumber(0, MAX_PROGRESSION_LENGTH - 1);
-  const generatedSequence = generateSequence(MAX_PROGRESSION_LENGTH);
+  const startingPoint = generateRandomNumber(0, 100);
+  const step = generateRandomNumber(0, 5);
+  const generatedSequence = generateSequence(MAX_PROGRESSION_LENGTH, startingPoint, step);
   const correctAnswer = generatedSequence[hiddenNumberIndex].toString();
 
   const copyOriginalSeq = generatedSequence.slice();
