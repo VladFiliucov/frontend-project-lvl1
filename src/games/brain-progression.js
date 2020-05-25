@@ -22,10 +22,9 @@ const genGameData = () => {
   const sequence = generateSequence(MAX_PROGRESSION_LENGTH, startingPoint, step);
   const correctAnswer = sequence[hiddenNumberIndex].toString();
 
-  const copyOriginalSeq = sequence.slice();
-  copyOriginalSeq[hiddenNumberIndex] = '..';
+  sequence[hiddenNumberIndex] = '..';
 
-  const question = copyOriginalSeq.join(' ');
+  const question = sequence.join(' ');
 
   return [question, correctAnswer];
 };
