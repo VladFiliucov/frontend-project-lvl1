@@ -1,7 +1,7 @@
 import runGameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
-const supportedOperations = {
+const calculator = {
   '+': (a, b) => a + b,
   '-': (a, b) => a - b,
   '*': (a, b) => a * b,
@@ -10,11 +10,11 @@ const supportedOperations = {
 const genGameData = () => {
   const firstNumber = generateRandomNumber(0, 10);
   const secondNumber = generateRandomNumber(0, 10);
-  const availableOperations = Object.keys(supportedOperations);
+  const availableOperations = Object.keys(calculator);
   const currentOperator =
     availableOperations[generateRandomNumber(0, availableOperations.length - 1)];
   const question = `${firstNumber} ${currentOperator} ${secondNumber}`;
-  const correctAnswer = supportedOperations[currentOperator](firstNumber, secondNumber).toString();
+  const correctAnswer = calculator[currentOperator](firstNumber, secondNumber).toString();
 
   return [question, correctAnswer];
 };
