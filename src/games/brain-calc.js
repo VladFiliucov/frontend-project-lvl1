@@ -12,9 +12,9 @@ const operations = Object.keys(calculator);
 const genGameData = () => {
   const firstNumber = generateRandomNumber(0, 10);
   const secondNumber = generateRandomNumber(0, 10);
-  const currentOperator = operations[generateRandomNumber(0, operations.length - 1)];
-  const question = `${firstNumber} ${currentOperator} ${secondNumber}`;
-  const correctAnswer = calculator[currentOperator](firstNumber, secondNumber).toString();
+  const operation = operations[generateRandomNumber(0, operations.length - 1)];
+  const question = `${firstNumber} ${operation} ${secondNumber}`;
+  const correctAnswer = calculator[operation](firstNumber, secondNumber).toString();
 
   return [question, correctAnswer];
 };
