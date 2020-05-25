@@ -19,10 +19,10 @@ const genGameData = () => {
   const hiddenNumberIndex = generateRandomNumber(0, MAX_PROGRESSION_LENGTH - 1);
   const startingPoint = generateRandomNumber(0, 100);
   const step = generateRandomNumber(0, 5);
-  const generatedSequence = generateSequence(MAX_PROGRESSION_LENGTH, startingPoint, step);
-  const correctAnswer = generatedSequence[hiddenNumberIndex].toString();
+  const sequence = generateSequence(MAX_PROGRESSION_LENGTH, startingPoint, step);
+  const correctAnswer = sequence[hiddenNumberIndex].toString();
 
-  const copyOriginalSeq = generatedSequence.slice();
+  const copyOriginalSeq = sequence.slice();
   copyOriginalSeq[hiddenNumberIndex] = '..';
 
   const question = copyOriginalSeq.join(' ');
