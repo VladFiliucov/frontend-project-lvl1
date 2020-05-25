@@ -7,9 +7,9 @@ const generateSequence = (seqLength, startingPoint, step) => {
   const sequence = [startingPoint];
 
   for (let i = 1; i < seqLength; i += 1) {
-    const nextElement = startingPoint + i * step;
+    const current = startingPoint + i * step;
 
-    sequence.push(nextElement);
+    sequence.push(current);
   }
 
   return sequence;
