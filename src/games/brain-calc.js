@@ -7,12 +7,12 @@ const calculator = {
   '*': (a, b) => a * b,
 };
 
+const operations = Object.keys(calculator);
+
 const genGameData = () => {
   const firstNumber = generateRandomNumber(0, 10);
   const secondNumber = generateRandomNumber(0, 10);
-  const availableOperations = Object.keys(calculator);
-  const currentOperator =
-    availableOperations[generateRandomNumber(0, availableOperations.length - 1)];
+  const currentOperator = operations[generateRandomNumber(0, operations.length - 1)];
   const question = `${firstNumber} ${currentOperator} ${secondNumber}`;
   const correctAnswer = calculator[currentOperator](firstNumber, secondNumber).toString();
 
