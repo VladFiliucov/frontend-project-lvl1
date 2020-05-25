@@ -2,7 +2,7 @@ import runGameCore from '../index.js';
 import generateRandomNumber from '../utils/index.js';
 
 const isPrime = num => {
-  for (let divisor = 2, maxDivisor = Math.sqrt(num); divisor <= maxDivisor; divisor += 1) {
+  for (let divisor = 2; divisor <= Math.sqrt(num); divisor += 1) {
     if (num % divisor === 0) return false;
   }
   return num > 1;
