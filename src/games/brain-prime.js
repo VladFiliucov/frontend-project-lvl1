@@ -9,10 +9,10 @@ const isPrime = num => {
 };
 
 const genGameData = () => {
-  const question = generateRandomNumber(0, 100).toString();
+  const question = generateRandomNumber(0, 100);
   const correctAnswer = isPrime(question) ? 'yes' : 'no';
 
-  return [question, correctAnswer];
+  return [question.toString(), correctAnswer];
 };
 
 const task = `Answer "yes" if given number is prime. Otherwise answer "no".`;

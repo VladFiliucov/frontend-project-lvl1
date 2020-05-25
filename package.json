@@ -9,7 +9,12 @@
   },
   "author": "Vlad Filiucov <filiucov@mail.ru>",
   "license": "MIT",
-  "keywords": ["braingames", "cli-game", "javascript", "gambling"],
+  "keywords": [
+    "braingames",
+    "cli-game",
+    "javascript",
+    "gambling"
+  ],
   "bin": {
     "brain-even": "bin/brain-even.js",
     "brain-calc": "bin/brain-calc.js",
