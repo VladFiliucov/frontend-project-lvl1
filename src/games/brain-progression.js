@@ -4,15 +4,15 @@ import generateRandomNumber from '../utils/index.js';
 const MAX_PROGRESSION_LENGTH = 10;
 
 const generateSequence = (seqLength, startingPoint, step) => {
-  const result = [startingPoint];
+  const sequence = [startingPoint];
 
   for (let i = 1; i < seqLength; i += 1) {
     const nextElement = startingPoint + i * step;
 
-    result.push(nextElement);
+    sequence.push(nextElement);
   }
 
-  return result;
+  return sequence;
 };
 
 const genGameData = () => {
